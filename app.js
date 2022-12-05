@@ -26,18 +26,21 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(helmet());
+
 
 //routes
 app.use('/admin', adminRoutes);
 app.use(chatRoutes);
 app.use(groupRoutes);
 
+
+
 app.use((req,res,next)=>{
     console.log(req.url);
     res.sendFile(path.join(__dirname, `./frontend/${req.url}`));
     
 })
+app.use(helmet());
 
 //associations
 User.hasMany(Chat);
@@ -48,6 +51,8 @@ User.belongsToMany(Group,{through:UserGroup});
 
 Group.hasMany(Chat);
 Chat.belongsTo(Group);
+
+
 
 sequelize.sync({
     // force: true

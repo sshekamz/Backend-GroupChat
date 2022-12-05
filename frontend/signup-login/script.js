@@ -1,13 +1,11 @@
-const name = document.getElementById('name');
-const email = document.getElementById('email');
-const phone = document.getElementById('phone');
-const password = document.getElementById('password');
-const button = document.querySelector('button');
-const form = document.querySelector('form');
-
 function signup(e) {
     e.preventDefault();
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const password = document.getElementById('password');
     const obj = {
+        
         name: name.value,
         email: email.value,
         phone: phone.value,
@@ -18,7 +16,7 @@ function signup(e) {
             console.log(response.data);
             if (response.status === 201) {
                 alert('Successfully signed up');
-                window.location.href='./login.html'
+                window.location.href='../login.html'
             }
             
         }).catch(error => {
@@ -31,6 +29,9 @@ function signup(e) {
 
 function login(e) {
     e.preventDefault();
+    console.log("enter");
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
     const obj = {
         email: email.value,
         password: password.value
