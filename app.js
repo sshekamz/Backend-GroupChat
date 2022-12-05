@@ -33,9 +33,10 @@ app.use('/admin', adminRoutes);
 app.use(chatRoutes);
 app.use(groupRoutes);
 
-app.use((req,res)=>{
-    console.log('url',req.url);
-    res.sendFile(path.join(__dirname, `./views/${req.url}`));
+app.use((req,res,next)=>{
+    console.log(req.url);
+    res.sendFile(path.join(__dirname, `./frontend/${req.url}`));
+    
 })
 
 //associations
