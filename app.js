@@ -4,7 +4,7 @@ const fs = require('fs');
 const express = require('express');
 
 const cors = require('cors');
-const helmet = require('helmet');
+//const helmet = require('helmet');
 const morgan = require('morgan');
 
 const dotenv = require('dotenv');
@@ -26,17 +26,17 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(helmet());
+//app.use(helmet());
 
 //routes
 app.use('/admin', adminRoutes);
 app.use(chatRoutes);
 app.use(groupRoutes);
 
-// app.use((req,res)=>{
-//     console.log('url',req.url);
-//     res.sendFile(path.join(__dirname, `./frontend/${req.url}`));
-// })
+app.use((req,res)=>{
+    console.log('url',req.url);
+    res.sendFile(path.join(__dirname, `./frontend/${req.url}`));
+})
 
 //associations
 User.hasMany(Chat);
